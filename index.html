@@ -3,11 +3,93 @@
 <head>
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
    <title>Document</title>
+   <!-- <link rel="stylesheet" type="text/css" rel="noopener" target="_blank" href="mystyles.css"> -->
+   <style>
+      /* @import url("css/style.css"); */
+      * {
+         vertical-align: baseline;
+         font-weight: inherit;
+         font-family: inherit;
+         font-style: inherit;
+         font-size: 100%;
+         border: 0 none;
+         outline: 0;
+         padding: 0;
+         margin: 0;
+      }
+      table {
+         border-collapse: collapse;
+         border-spacing: 0;
+      }
+
+      html {background-color: rgb(0, 0, 0);}
+      body {
+         background-color: rgb(0, 0, 0);
+         margin: 0;
+         padding: 0;
+         border: none;
+         outline: none;
+         /* overflow: scroll; */
+      }
+      h1   {color: blue;}
+      p    {color: red;}
+
+      iframe > .grid-container {
+         background-color: black !important;
+      }
+
+      .resp-container {
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         background-color: rgb(0, 0, 0);
+         /* margin-top: 60px; */
+         /* overflow: hidden; */
+
+      }
+      .resp-iframe {
+         position: absolute;
+         top: 0;
+         left: 0;
+         /* top: -1px;
+         left: -1px; */
+         width: 100%;
+         height: 100%;
+         /* max-width: 870px; */
+         box-sizing: border-box;
+         border: none;
+         background-color: rgb(0, 0, 0);
+         /* padding-top: 50px; */
+         overflow-x: auto !important;
+         overflow-y: auto !important;
+      }
+      iframe {
+         /* overflow: scroll !important; */
+      }
+
+   </style>
 </head>
 <body>
-   <h1>Work in progress</h1>
-   <p>test</p>
+   <!-- <h1>Header</h1> -->
+
+   <!-- style="margin: 0; padding: 0;" -->
+   <div class="resp-container">
+      <!-- <iframe id="iframe" class="resp-iframe" allowtransparency="true" style="overflow: hidden; border: 0; background-color: #000000;" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQB8O49Pi_Kmdyw6eK8KkZ6ZVJcxGMAlOkz5xiHcawsNxjF5hhVr5hnVeyiYpbkblVMUhmTeZs121M-/pubhtml?gid=1489668672&amp;range=A1:Z60&amp;single=true&amp;widget=false&amp;chrome=false&amp;headers=false"  frameborder="0" gesture="media" allow="encrypted-media" loading ="lazy" allowfullscreen scrolling="no" >
+      </iframe> -->
+      <!-- <iframe class="resp-iframe" width="700" height="900" frameborder="0" scrolling="no" src="https://onedrive.live.com/embed?resid=69E3A1AAE6D17E3A%213999&authkey=%21AIoFy8pEkt6bcDk&em=2&wdAllowInteractivity=False&ActiveCell='RANKS_FULL'!A3&Item='RANKS_FULL'!A3%3AZ197&wdHideGridlines=True&wdInConfigurator=True&wdInConfigurator=True&edesNext=false&resen=true&ed1JS=false">
+      </iframe> -->
+      <!-- <iframe class="resp-iframe" width="700" height="900" frameborder="0" scrolling="no" src="https://onedrive.live.com/embed?resid=69E3A1AAE6D17E3A%213999&authkey=%21AIoFy8pEkt6bcDk&em=2&wdAllowInteractivity=False&ActiveCell='RANKS_FULL'!A3&Item='RANKS_FULL'!A3%3AZ197&wdHideGridlines=True&wdInConfigurator=False&wdInConfigurator=False&edesNext=false&resen=true&ed1JS=false">
+      </iframe> -->
+      <iframe class="resp-iframe" width="700" height="900" frameborder="0" scrolling="no" src="https://onedrive.live.com/embed?resid=69e3a1aae6d17e3a%214077&authkey=%21ADyJipaBfHhUJ5c&em=2&wdAllowInteractivity=False&ActiveCell='DataRanksFull'!A2&Item='DataRanksFull'!A2%3AAM196&wdHideGridlines=True&wdInConfigurator=True&wdInConfigurator=True&edesNext=false&resen=false&ed1JS=false" gesture="media" allow="encrypted-media" loading ="lazy" allowfullscreen>
+      </iframe>
+      <!-- width="100%" height="auto" border="0" cellspacing="0" allow="fullscreen" -->
+   </div>
+  
 </body>
+
 </html>
