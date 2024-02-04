@@ -1,170 +1,326 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport"
-    content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=3.0, user-scalable=yes">
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <!-- <meta name="viewport" content="width=device-width, minimal-ui, initial-scale=1.0"> -->
+   <meta name="viewport" content="width=device-width, minimal-ui, initial-scale=1.0, minimum-scale=0.5, maximum-scale=3.0, user-scalable=yes">
+   <title>TournamentStats</title>
+   <!-- <link rel="stylesheet" type="text/css" rel="noopener" target="_blank" href="mystyles.css"> -->
+   <style>
+      /* @import url("css/style.css"); */
+      * {
+         vertical-align: baseline;
+         font-weight: inherit;
+         font-family: inherit;
+         font-style: inherit;
+         font-size: 100%;
+         border: 0 none;
+         outline: 0;
+         padding: 0;
+         margin: 0;
+      }
 
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+      @-ms-viewport{
+      width: device-width;
+      }
 
-  <title>R&R Darts League</title>
-  <style>
-    body {
-      background-color: #4472C4;
 
-      /* contain overscroll behaviour only in vertical direction */
-      overscroll-behavior-y: contain;
-      /* Show it is fixed to the top */
-      /* min-height: 75rem; */
-      padding-top: 3.5rem;
-    }
+      table {
+         border-collapse: collapse;
+         border-spacing: 0;
+      }
 
-    /* .iframe-parent {
-      position: relative;
+      html {
+         background-color: rgb(68, 114, 196);
+         
+         
+      }
 
-      &:before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-      } */
+      body {
+         background-color: rgb(68, 114, 196);
+         margin: 0;
+         padding: 0;
+         border: none;
+         outline: none;
+         /* overflow: scroll; */
+         /* height: 100%; */
+         /* display: absolute; */
+      }
 
-      /* iframe {
-        overflow: auto !important;
-      } */
-  </style>
+      h1 {
+         color: blue;
+      }
 
+      p {
+         color: red;
+      }
+
+      iframe>.grid-container {
+         background-color: rgb(68, 114, 196) !important;
+      }
+
+      .resp-container {
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         background-color: rgb(68, 114, 196);;
+         overflow: hidden;
+         z-index: 0;        
+         
+
+      }
+
+      .resp-iframe {
+         position: absolute;
+         top: 0;
+         left: 0;
+         /* top: -1px;
+         left: -1px; */
+         width: 100%;
+         height: 100%;
+         box-sizing: border-box;
+         border: none;
+         background-color: rgb(68, 114, 196);
+         /* padding-top: 50px; */
+         overflow-x: auto !important;
+         overflow-y: scroll !important;
+         /* scrollbar-width: none !important; */
+
+
+         
+         
+      }
+
+      iframe {
+         /* overflow: scroll !important; */
+         
+      }
+
+      .menu {
+         position: sticky;
+         z-index: 9999;
+         top: 12px;
+         right: 0px;
+         /* top: -1px;
+         left: -1px; */
+         margin-top: 12px;
+         margin-right: 28px;
+         margin-left: auto;
+         width: 50px;
+         height: 50px;
+         box-sizing: border-box;
+         border: none;
+         border-radius: 10px;
+         color: rgba(255, 100, 0, 0.3);
+         background-color: rgba(0, 183, 255, 0.4);
+         /* padding-top: 50px; */
+         
+      }
+
+
+
+         .hamburger-menu{
+            z-index: 4;
+         }
+         #menu__toggle {
+         opacity: 0;
+         }
+         #menu__toggle:checked + .menu__btn > span {
+         transform: rotate(45deg);
+         }
+         #menu__toggle:checked + .menu__btn > span::before {
+         top: 0;
+         transform: rotate(0deg);
+         }
+         #menu__toggle:checked + .menu__btn > span::after {
+         top: 0;
+         transform: rotate(90deg);
+         }
+         #menu__toggle:checked ~ .menu__box {
+         left: 0 !important;
+         }
+         .menu__btn {
+         position: fixed;
+         top: 16px;
+         left: 20px;
+         width: 32px;
+         height: 32px;
+         cursor: pointer;
+         z-index: 3;
+         }
+         .menu__btn > span,
+         .menu__btn > span::before,
+         .menu__btn > span::after {
+         display: block;
+         position: absolute;
+         width: 100%;
+         height: 4px;
+         background-color: rgba(11, 65, 159, 0.6);
+         transition-duration: .25s;
+         }
+         .menu__btn > span::before {
+         content: '';
+         top: 18px;
+         }
+         .menu__btn > span::after {
+         content: '';
+         top: 9px;
+         }
+         .menu__box {
+         display: block;
+         position: fixed;
+         top: 0;
+         left: -100%;
+         width: 300px;
+         height: 100%;
+         margin: 0;
+         padding: 80px 0;
+         list-style: none;
+         background-color: #ECEFF1;
+         box-shadow: 2px 2px 24px rgba(0, 0, 0, .4);
+         transition-duration: .25s;
+         z-index: 2;
+         }
+         .menu__item {
+         display: block;
+         padding: 12px 24px;
+         color: rgba(11, 65, 159, 0.6);
+         font-family: 'Roboto', sans-serif;
+         font-size: 20px;
+         font-weight: 400;
+         text-decoration: none;
+         transition-duration: .25s;
+         }
+         .menu__item:hover {
+         background-color: rgba(68, 114, 196, 0.2);;
+         }
+
+
+
+   </style>
 </head>
 
 <body>
-
-  <!-- navbar -->
-  <div class="container-fluid p-0">
-    <nav class="navbar navbar-dark fixed-top" style="background-color: #4472C4;"><!-- fixed-top  -->
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">R&R Darts League</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-          aria-controls="offcanvasNavbar">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel"
-          style="background-color: #4472C4;">
-          <div class="offcanvas-header">
-            <h5 class="offcanvas-title text-white" id="offcanvasNavbarLabel">Menu</h5>
-            <button type="button" class="btn-close btn-close-white text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-          </div>
-          <div class="offcanvas-body navbar-dark ">
-            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="offcanvasNavbarDropdown" role="button"
-                  data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li>
-                    <hr class="dropdown-divider">
-                  </li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-              </li>
-            </ul>
-            <form class="d-flex">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </nav>
-  </div>
-  <!-- end of navbar -->
-  <!-- <hr> -->
-
-
-  <!-- <h1>Hello, world!</h1> -->
-
-  <main class="container-fluid" style="background-color: #4472C4;">
-    <div class="row">
-      <!-- <div class="col p-2">
-        Season 3
-
-      </div> -->
-    </div>
-    <div class="row justify-content-center">
-      <div class="col-12 p-0" style="overflow: hidden; width: 756px;">
-        <iframe class="resp-iframe" style=" min-height:620px; overflow-x: scroll !important; overflow-y: auto !important; overscroll-behavior-y: contain;"
-          gesture="media" allow="encrypted-media" loading="lazy" allowfullscreen width="100%" height="100%"
-          frameborder="0" scrolling="yes"  
-          src="https://onedrive.live.com/embed?resid=69e3a1aae6d17e3a%214077&authkey=%21ADyJipaBfHhUJ5c&em=2&wdAllowInteractivity=False&ActiveCell='DataRanksFull'!A1&Item=Table_DataRanksFull&wdHideGridlines=True&wdInConfigurator=True&wdInConfigurator=True&edesNext=false&resen=false&ed1JS=false">
-
-        </iframe>
-      </div>
+   <!-- <h1>Header</h1> -->
+   <!-- <div class="menu"> M </div> -->
+   <div class="hamburger-menu">
+      <input id="menu__toggle" type="checkbox" />
+      <label class="menu__btn" for="menu__toggle">
+        <span></span>
+      </label>
+  
+      <ul class="menu__box">
+         <li><a class="menu__item" href="#">...IN PROGRESS...</a></li>
+        <li><a class="menu__item" href="#">Top</a></li>
+        <li><a class="menu__item" href="#">Rounds</a></li>
+      </ul>
     </div>
 
-    <div class="row">
-      <div class="col">
-        <!-- <p>
+   <!-- src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQB8O49Pi_Kmdyw6eK8KkZ6ZVJcxGMAlOkz5xiHcawsNxjF5hhVr5hnVeyiYpbkblVMUhmTeZs121M-/pubhtml?gid=1489668672&amp;range=A1:Z400&amp;single=true&amp;widget=false&amp;chrome=false&amp;headers=false" -->
+   <!-- style="margin: 0; padding: 0;" -->
+   <div class="resp-container">
+      <iframe id="iframe" class="resp-iframe" allowtransparency="true"
+         style="overflow: hidden; border: 0; background-color: #000000;"
 
-          What is Lorem Ipsum?
-
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-          standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
-          make a type specimen book. It has survived not only five centuries, but also the leap into electronic
-          typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
-          sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
-          PageMaker including versions of Lorem Ipsum.
-
-        </p> -->
-      </div>
-    </div>
-
-
-
-
-    <div class="container-fluid resp-container">
-
-      <!-- <iframe id="iframe" class="resp-iframe" allowtransparency="true" style="overflow: hidden; border: 0; background-color: #000000;" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQB8O49Pi_Kmdyw6eK8KkZ6ZVJcxGMAlOkz5xiHcawsNxjF5hhVr5hnVeyiYpbkblVMUhmTeZs121M-/pubhtml?gid=1489668672&amp;range=A1:Z60&amp;single=true&amp;widget=false&amp;chrome=false&amp;headers=false"  frameborder="0" gesture="media" allow="encrypted-media" loading ="lazy" allowfullscreen scrolling="no" >
-      </iframe> -->
-      <!-- <iframe class="resp-iframe" width="700" height="900" frameborder="0" scrolling="no" src="https://onedrive.live.com/embed?resid=69E3A1AAE6D17E3A%213999&authkey=%21AIoFy8pEkt6bcDk&em=2&wdAllowInteractivity=False&ActiveCell='RANKS_FULL'!A3&Item='RANKS_FULL'!A3%3AZ197&wdHideGridlines=True&wdInConfigurator=True&wdInConfigurator=True&edesNext=false&resen=true&ed1JS=false">
-      </iframe> -->
-      <!-- <iframe class="resp-iframe" width="700" height="900" frameborder="0" scrolling="no" src="https://onedrive.live.com/embed?resid=69E3A1AAE6D17E3A%213999&authkey=%21AIoFy8pEkt6bcDk&em=2&wdAllowInteractivity=False&ActiveCell='RANKS_FULL'!A3&Item='RANKS_FULL'!A3%3AZ197&wdHideGridlines=True&wdInConfigurator=False&wdInConfigurator=False&edesNext=false&resen=true&ed1JS=false">
-      </iframe> -->
-
-
-      <!-- <iframe class="resp-iframe" width="700" height="900" frameborder="0" scrolling="no" src="https://onedrive.live.com/embed?resid=69e3a1aae6d17e3a%214077&authkey=%21ADyJipaBfHhUJ5c&em=2&wdAllowInteractivity=False&ActiveCell='DataRanksFull'!A2&Item='DataRanksFull'!A2%3AAM196&wdHideGridlines=True&wdInConfigurator=True&wdInConfigurator=True&edesNext=false&resen=false&ed1JS=false" gesture="media" allow="encrypted-media" loading ="lazy" allowfullscreen>
-      </iframe> -->
+         src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQdhGoEs-mWlrkcTqT3YUItc3SZnFTokIHYiindA16TNzviZjg6yjH4rWemt-FzjUX3Rv8rpv2snsT9/pubhtml?gid=0&amp;single=true&amp;widget=false&amp;chrome=false&amp;headers=false"
+         frameborder="0" gesture="media" allow="encrypted-media" loading="lazy" allowfullscreen scrolling="no" seamless>
+      </iframe>
       <!-- width="100%" height="auto" border="0" cellspacing="0" allow="fullscreen" -->
-    </div>
+   </div>
 
-
-
-
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-      crossorigin="anonymous"></script>
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    -->
 </body>
 
 </html>
+
+
+<!-- <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQdhGoEs-mWlrkcTqT3YUItc3SZnFTokIHYiindA16TNzviZjg6yjH4rWemt-FzjUX3Rv8rpv2snsT9/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false"></iframe> -->
+
+<!-- 
+var ss = SpreadsheetApp.getActiveSpreadsheet();
+var sheet = ss.getSheetByName('TOP');
+var abc = sheet.getRange(i, 3).getDisplayValue();
+
+var sheet = ss.getActiveSheet();
+
+var lastRow = sheet.getMaxRows();
+
+
+
+var abc = sheet.getRange(i, 3).getDisplayValue(); //col10
+
+//var cell = sheet.getActiveCell();
+var cell = sheet.getRange(1, 3);
+
+
+
+//
+// helper `forEachRangeCell` function
+//
+
+function forEachRangeCell(range, f) {
+  const numRows = range.getNumRows();
+  Logger.log(numRows);
+  const numCols = range.getNumColumns();
+  Logger.log(numCols);
+
+  for (let i = 1; i <= numCols; i++) {
+    for (let j = 1; j <= numRows; j++) {
+      const cell = range.getCell(j, i)
+
+      f(cell)
+    }
+  }
+}
+
+//
+// Usage
+//
+
+//const range = SpreadsheetApp.getActiveSheet().getActiveRange();
+
+var searchTerm = 'Top ';
+
+
+var sheet = SpreadsheetApp.getActive().getSheetByName("TOP");
+var lastRow = sheet.getLastRow();
+//var lastRow = sheet.getMaxRows();
+var range = sheet.getRange('C7:AB' + lastRow);
+
+//fCell = sheet.getRange(C7);
+//Logger.log(fCell);
+
+forEachRangeCell(range, (cell) => {
+  var val = cell.getDisplayValue();
+  //Logger.log(val);
+
+  if(val.toString().indexOf(searchTerm) > -1) {
+    // do something
+    cell.setFontSize(12).setFontWeight("bold");
+    //.setBackground('#980000');
+    //cell.setBold;
+  }
+})
+
+
+for (var i = 0; i < numRows; i++) {
+   for (var j = 0; j < numCols; j++) {
+     //Logger.log(i+"_"+j);
+
+     if(range.getCell(i+1,j+1).getDisplayValue().toString().indexOf(searchTerm) > -1) {
+       // do something
+       Logger.log('found: ' + i+' '+j);
+       range.getCell(i+1,j+1).setFontSize(12).setFontWeight("bold");
+       //range.getCell(i+1,j+1).setBackground('#00B050').setFontColor('#ffffff');
+       sheet.setRowHeight(i+startRow, 32);
+     }
+   }
+ }
+
+
+
+
+ -->
